@@ -1,298 +1,371 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Método Rotina Leve — IA para professor | paraprofessor.com.br</title>
-<meta name="description" content="Prompts prontos e passo a passo para professores usarem IA no planejamento, relatórios e PEI. Menos tempo com burocracia, mais tempo para você.">
-<meta property="og:title" content="Método Rotina Leve — IA para professor">
-<meta property="og:description" content="Planejamentos, relatórios e PEI em minutos, com prompts prontos para copiar e colar.">
-<meta property="og:url" content="https://paraprofessor.com.br">
-<meta property="og:type" content="website">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Método Rotina Leve | IA para professores: de 6 horas para 1 hora de planejamento</title>
+<meta name="description" content="Aprenda a usar a inteligência artificial para planejar aulas, criar materiais, provas, relatórios e PEI em minutos. Curso prático para professores, do zero.">
+<meta property="og:title" content="Método Rotina Leve – IA para professores">
+<meta property="og:description" content="De 6 horas de planejamento para 1 hora por semana. Curso prático, do zero, com 115 prompts prontos.">
+<meta property="og:image" content="https://paraprofessor.com.br/img/og.jpg">
+<meta property="og:url" content="https://paraprofessor.com.br/">
+<meta name="theme-color" content="#2E7D70">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --agua:#7fcfc4; --agua-escuro:#2f8f84; --agua-fundo:#eef8f6; --agua-claro:#f7fcfb;
-    --texto:#23413d; --texto-suave:#55716d; --branco:#fff; --destaque:#f4b860;
-    --raio:18px; --sombra:0 10px 30px rgba(47,143,132,.12);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Nunito',system-ui,sans-serif;color:var(--texto);background:var(--agua-claro);line-height:1.6;font-size:18px}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-  section{padding:72px 0}
-  h1,h2,h3{line-height:1.2;font-weight:800}
-  h1{font-size:clamp(2rem,5vw,3.2rem)}
-  h2{font-size:clamp(1.6rem,3.6vw,2.3rem);margin-bottom:18px;text-align:center}
-  .sub{color:var(--texto-suave);text-align:center;max-width:680px;margin:0 auto 40px}
-  .marca{font-weight:800;color:var(--agua-escuro);letter-spacing:.3px}
-  .btn{display:inline-block;background:var(--agua-escuro);color:var(--branco);text-decoration:none;font-weight:800;
-       padding:18px 34px;border-radius:999px;font-size:1.1rem;box-shadow:var(--sombra);transition:transform .15s,background .15s}
-  .btn:hover{transform:translateY(-2px);background:#267a70}
-  .btn small{display:block;font-weight:600;font-size:.8rem;opacity:.9}
-  .centro{text-align:center}
-
-  /* topo */
-  header{padding:18px 0}
-  header .wrap{display:flex;justify-content:space-between;align-items:center}
-  header .marca{font-size:1.15rem}
-  header a.link{color:var(--agua-escuro);font-weight:700;text-decoration:none}
-
-  /* hero */
-  .hero{padding:40px 0 72px;background:linear-gradient(180deg,var(--agua-claro),var(--agua-fundo))}
-  .hero .wrap{text-align:center}
-  .selo{display:inline-block;background:var(--branco);border:1px solid #cfe9e4;color:var(--agua-escuro);font-weight:700;
-        padding:6px 16px;border-radius:999px;font-size:.9rem;margin-bottom:22px}
-  .hero h1 span{color:var(--agua-escuro)}
-  .hero p.lead{font-size:1.2rem;color:var(--texto-suave);max-width:720px;margin:20px auto 32px}
-  .video{max-width:760px;margin:0 auto 34px;aspect-ratio:16/9;background:var(--branco);border:2px dashed #b9e2db;
-         border-radius:var(--raio);display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--texto-suave);box-shadow:var(--sombra)}
-  .video .play{width:74px;height:74px;border-radius:50%;background:var(--agua);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-  .video .play:after{content:"";border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:6px}
-  .video iframe{width:100%;height:100%;border:0;border-radius:var(--raio)}
-
-  /* dores */
-  .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  .card{background:var(--branco);border-radius:var(--raio);padding:28px;box-shadow:var(--sombra)}
-  .card .ico{font-size:2rem;margin-bottom:10px}
-  .card h3{font-size:1.15rem;margin-bottom:8px}
-  .card p{color:var(--texto-suave);font-size:1rem}
-
-  /* solucao */
-  .solucao{background:var(--branco)}
-  .lista{max-width:720px;margin:0 auto;list-style:none}
-  .lista li{padding:14px 0 14px 44px;position:relative;border-bottom:1px solid #e6f3f0}
-  .lista li:before{content:"✓";position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;background:var(--agua-fundo);
-                   color:var(--agua-escuro);font-weight:800;display:flex;align-items:center;justify-content:center}
-
-  /* para quem */
-  .duas{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-  .duas .card h3{color:var(--agua-escuro)}
-  .duas .card.nao h3{color:#b0705a}
-  .duas ul{list-style:none}
-  .duas li{padding:6px 0}
-
-  /* prova social */
-  .prova{background:var(--agua-fundo)}
-  .numero{font-size:clamp(2.6rem,7vw,4rem);font-weight:800;color:var(--agua-escuro);text-align:center}
-
-  .depos{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));text-align:left;margin-top:10px}
-  .depo{background:var(--branco);border-radius:var(--raio);padding:26px;box-shadow:var(--sombra);display:flex;flex-direction:column}
-  .depo .aspas{font-size:3rem;line-height:.6;color:var(--agua);font-weight:800;height:26px}
-  .depo p{color:var(--texto-suave);font-size:1rem;flex:1}
-  .depo p strong{display:block;color:var(--texto);font-size:1.08rem;margin-bottom:6px}
-  .depo .quem{display:flex;gap:12px;align-items:center;margin-top:18px}
-  .depo .av{width:44px;height:44px;border-radius:50%;background:var(--agua);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .depo .quem b{display:block;line-height:1.2}
-  .depo .quem small{color:var(--texto-suave)}
-
-  /* autor */
-  .autor .card{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
-  .autor .foto{width:120px;height:120px;border-radius:50%;background:var(--agua);flex-shrink:0;display:flex;align-items:center;justify-content:center;
-               color:#fff;font-size:2.4rem;font-weight:800}
-  .autor .txt{flex:1;min-width:240px}
-
-  /* oferta */
-  .oferta{background:linear-gradient(180deg,var(--agua-fundo),var(--agua-claro))}
-  .caixa{max-width:560px;margin:0 auto;background:var(--branco);border-radius:24px;padding:40px 32px;box-shadow:0 18px 48px rgba(47,143,132,.18);
-         text-align:center;border:2px solid var(--agua)}
-  .caixa .de{color:var(--texto-suave);text-decoration:line-through}
-  .caixa .por{font-size:3rem;font-weight:800;color:var(--agua-escuro);margin:4px 0}
-  .caixa .lista{margin:22px 0 28px;text-align:left}
-  .caixa .seguro{font-size:.9rem;color:var(--texto-suave);margin-top:16px}
-
-  /* garantia */
-  .garantia .card{max-width:760px;margin:0 auto;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-  .garantia .selo7{width:110px;height:110px;border-radius:50%;background:var(--destaque);color:#fff;font-weight:800;
-                   display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1.1;text-align:center}
-  .garantia .selo7 b{font-size:2.2rem}
-
-  /* faq */
-  details{background:var(--branco);border-radius:14px;padding:18px 22px;margin:0 auto 12px;max-width:760px;box-shadow:0 4px 14px rgba(47,143,132,.08)}
-  summary{font-weight:700;cursor:pointer;list-style:none}
-  summary::-webkit-details-marker{display:none}
-  summary:after{content:"+";float:right;color:var(--agua-escuro);font-weight:800}
-  details[open] summary:after{content:"–"}
-  details p{margin-top:10px;color:var(--texto-suave)}
-
-  footer{padding:36px 0;text-align:center;color:var(--texto-suave);font-size:.9rem}
-  .barra{position:fixed;bottom:0;left:0;right:0;background:var(--branco);box-shadow:0 -6px 20px rgba(0,0,0,.08);padding:10px;display:none;text-align:center;z-index:9}
-  .barra .btn{padding:12px 26px;font-size:1rem}
-  @media(max-width:700px){body{font-size:17px}section{padding:56px 0}.barra{display:block}footer{padding-bottom:90px}}
+:root{--agua:#7BC4B5;--agua2:#CFEBE4;--agua3:#E3F3EF;--escuro:#2E7D70;--marinho:#1E3A4C;--off:#FAF8F4;--areia:#F1EADF;--coral:#F0A079;--coralc:#FCE3D5;--texto:#3b5566}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--marinho);background:var(--off);line-height:1.6;font-size:17px}
+h1,h2,h3,.pp{font-family:Poppins,system-ui,sans-serif;line-height:1.15}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+.tag{display:inline-block;font-family:Poppins;font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--escuro);background:var(--agua3);padding:7px 16px;border-radius:40px;text-transform:uppercase}
+h2{font-size:clamp(28px,4vw,40px);margin:14px 0 18px}
+.lead{font-size:19px;color:var(--texto);max-width:720px}
+.center{text-align:center}.center .lead{margin:0 auto}
+.btn{display:inline-block;background:var(--escuro);color:#fff;text-decoration:none;font-family:Poppins;font-weight:600;font-size:18px;padding:18px 34px;border-radius:14px;box-shadow:0 10px 30px rgba(46,125,112,.28);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(46,125,112,.35)}
+.btn.big{font-size:20px;padding:20px 40px}
+.small{font-size:14px;color:var(--texto)}
+/* topo */
+header{position:sticky;top:0;z-index:20;background:rgba(250,248,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid #ece6db}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .mk{width:38px;height:38px;border-radius:11px;background:var(--agua);display:flex;align-items:center;justify-content:center}
+.logo b{display:block;font-family:Poppins;font-size:10px;letter-spacing:.18em;color:var(--escuro)}
+.logo span{display:block;font-family:Poppins;font-weight:700;font-size:19px;line-height:1}
+header .btn{font-size:15px;padding:10px 18px;border-radius:10px;box-shadow:none}
+/* faixa de lançamento */
+.faixa{background:var(--marinho);color:#fff;text-align:center;font-size:15px;padding:10px 16px}
+.faixa b{color:var(--agua2)}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:64px 0 80px}
+.hero:before{content:"";position:absolute;width:720px;height:720px;border-radius:50%;background:var(--agua2);right:-260px;top:-260px;z-index:-1}
+.hero:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:var(--coral);right:38%;top:90px;z-index:-1;opacity:.85}
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(34px,5vw,56px);margin:18px 0}
+.hero h1 em{font-style:normal;color:var(--escuro)}
+.hero p.lead{margin-bottom:28px}
+.checks{list-style:none;margin:0 0 30px}
+.checks li{padding-left:32px;position:relative;margin:8px 0}
+.checks li:before{content:"";position:absolute;left:0;top:4px;width:20px;height:20px;border-radius:50%;background:var(--agua3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%232E7D70' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.mock{position:relative;height:460px}
+.mock img{position:absolute;border-radius:10px;box-shadow:0 24px 50px rgba(30,58,76,.22);background:#fff}
+.mock .m1{width:58%;left:21%;top:0;z-index:3}
+.mock .m2{width:44%;left:0;top:70px;transform:rotate(-6deg);z-index:2}
+.mock .m3{width:44%;right:0;top:70px;transform:rotate(6deg);z-index:2}
+.preco-mini{margin-top:16px;font-size:15px;color:var(--texto)}
+.preco-mini s{opacity:.7}
+.preco-mini b{color:var(--escuro);font-size:18px}
+/* dor */
+.dor{background:#fff}
+.dores{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+.dores div{background:var(--off);border-radius:16px;padding:22px 24px;border-left:5px solid var(--coral)}
+.virada{margin-top:38px;background:var(--agua3);border-radius:18px;padding:28px 30px;font-size:19px}
+/* passos */
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px}
+.passo{background:#fff;border-radius:18px;padding:28px;box-shadow:0 6px 24px rgba(30,58,76,.06)}
+.passo .n{width:44px;height:44px;border-radius:50%;background:var(--escuro);color:#fff;font-family:Poppins;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.passo h3{font-size:20px;margin-bottom:8px}
+/* módulos */
+.mods{background:#fff}
+.grid-mod{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;margin-top:38px}
+.mod{background:var(--off);border-radius:16px;overflow:hidden;border:1px solid #eee6da}
+.mod img{width:100%;aspect-ratio:2/3;object-fit:cover}
+.mod details{padding:14px 16px}
+.mod summary{cursor:pointer;font-family:Poppins;font-weight:600;font-size:15px;list-style:none}
+.mod summary::-webkit-details-marker{display:none}
+.mod summary:after{content:" +";color:var(--escuro)}
+.mod details[open] summary:after{content:" –"}
+.mod ul{margin:10px 0 0 18px;font-size:14px;color:var(--texto)}
+.numeros{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:34px}
+.numeros div{background:var(--agua3);border-radius:14px;padding:14px 22px;text-align:center;min-width:150px}
+.numeros b{display:block;font-family:Poppins;font-size:30px;color:var(--escuro)}
+/* bônus */
+.bonus{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:38px}
+.bon{background:#fff;border-radius:20px;padding:26px;display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;box-shadow:0 6px 24px rgba(30,58,76,.06)}
+.bon img{border-radius:8px;box-shadow:0 10px 24px rgba(30,58,76,.18)}
+.bon .tag{font-size:11px;background:var(--coralc);color:#9a4a22}
+.bon h3{font-size:21px;margin:10px 0 8px}
+/* para quem */
+.quem{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:34px}
+.quem>div{border-radius:18px;padding:28px}
+.quem .sim{background:var(--agua3)}.quem .nao{background:var(--coralc)}
+.quem h3{font-size:21px;margin-bottom:12px}
+.quem ul{margin-left:20px}.quem li{margin:7px 0}
+/* prova */
+.prova{background:var(--marinho);color:#fff}
+.prova .lead{color:#cfe1e6}
+.prova .tag{background:rgba(255,255,255,.1);color:var(--agua2)}
+.big-num{font-family:Poppins;font-weight:700;font-size:clamp(54px,8vw,84px);color:var(--agua)}
+/* autor */
+.autor .wrap{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center}
+.autor .foto{width:200px;height:200px;border-radius:50%;background:var(--agua2);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:700;font-size:64px;color:var(--escuro)}
+/* oferta */
+.oferta{background:linear-gradient(180deg,var(--off),var(--agua3))}
+.box{max-width:640px;margin:34px auto 0;background:#fff;border-radius:24px;padding:38px 34px;box-shadow:0 20px 60px rgba(30,58,76,.12);text-align:center;border:2px solid var(--agua2)}
+.box ul{list-style:none;text-align:left;margin:0 0 26px}
+.box li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #e4ddd0}
+.box li span:last-child{color:var(--texto);white-space:nowrap}
+.de{color:var(--texto);font-size:16px}
+.por{font-family:Poppins;font-weight:700;font-size:58px;color:var(--escuro);line-height:1;margin:6px 0}
+.cupom{display:inline-block;margin:10px 0 20px;background:var(--coralc);color:#8a3f1b;border:2px dashed var(--coral);padding:10px 16px;border-radius:12px;font-size:15px}
+.cupom b{font-family:Poppins;letter-spacing:.06em}
+.garantia{display:flex;gap:18px;align-items:center;text-align:left;max-width:640px;margin:26px auto 0;background:#fff;border-radius:18px;padding:22px 24px}
+.selo{flex:0 0 74px;height:74px;border-radius:50%;background:var(--escuro);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Poppins;font-weight:700;line-height:1}
+.selo small{font-size:10px;font-weight:600;margin-top:3px}
+.seguro{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--texto)}
+/* faq */
+.faq{max-width:780px;margin:30px auto 0}
+.faq details{background:#fff;border-radius:14px;padding:18px 22px;margin-bottom:12px;box-shadow:0 4px 16px rgba(30,58,76,.05)}
+.faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--escuro);font-size:22px;line-height:1}
+.faq details[open] summary:after{content:"–"}
+.faq p{margin-top:10px;color:var(--texto)}
+footer{background:var(--marinho);color:#b9cdd3;padding:36px 0;font-size:14px;text-align:center}
+footer a{color:#fff}
+.fixo{display:none}
+@media (max-width:860px){
+ body{font-size:16px}
+ section{padding:56px 0}
+ .hero .wrap,.autor .wrap{grid-template-columns:1fr}
+ .mock{height:330px;max-width:420px;margin:10px auto 0;width:100%}
+ .dores,.passos,.bonus,.quem{grid-template-columns:1fr}
+ .bon{grid-template-columns:110px 1fr}
+ .autor .foto{width:140px;height:140px;font-size:46px;margin:0 auto}
+ header .btn{display:none}
+ .fixo{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:30;text-align:center}
+ .fixo .btn{display:block;padding:16px}
+ footer{padding-bottom:90px}
+}
 </style>
 </head>
 <body>
 
+<div class="faixa">🌿 <b>Lançamento:</b> R$ 37 com o cupom <b>LANCAMENTO</b> para as 50 primeiras professoras. Depois, R$ 47.</div>
+
 <header>
-  <div class="wrap">
-    <div class="marca">Método Rotina Leve</div>
-    <a class="link" href="#oferta">Quero o método</a>
-  </div>
+ <div class="wrap">
+  <a class="logo" href="#topo" aria-label="Método Rotina Leve">
+   <span class="mk"><svg width="22" height="22" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 80 C20 40 50 16 86 14 C84 52 60 82 20 80 Z"/><path d="M20 80 L60 40"/></svg></span>
+   <span><b>MÉTODO</b><span>Rotina Leve</span></span>
+  </a>
+  <a class="btn" href="#oferta">Quero começar</a>
+ </div>
 </header>
 
-<!-- 1. HERO + VSL -->
+<main id="topo">
+
+<!-- HERO -->
 <section class="hero">
-  <div class="wrap">
-    <div class="selo">IA para professor · direto ao ponto</div>
-    <h1>Planejamento, relatório e PEI <span>em minutos</span>,<br>não nas suas noites e fins de semana.</h1>
-    <p class="lead">O Método Rotina Leve te entrega prompts prontos e um passo a passo simples para usar inteligência artificial nas tarefas mais cansativas da escola, mesmo que você nunca tenha usado IA antes.</p>
-
-    <!-- VSL: quando o vídeo estiver pronto, troque o bloco abaixo por um <iframe> do YouTube/Vimeo/Panda -->
-    <div class="video" id="vsl">
-      <div class="play"></div>
-      <div>Vídeo em breve</div>
-    </div>
-
-    <a class="btn cta" href="#oferta">Quero uma rotina mais leve<small>Acesso imediato</small></a>
+ <div class="wrap">
+  <div>
+   <span class="tag">IA para professores</span>
+   <h1>De 6 horas de planejamento para <em>1 hora por semana</em>.</h1>
+   <p class="lead">O Método Rotina Leve ensina, do zero e passo a passo, como usar a inteligência artificial para planejar aulas, criar materiais, provas, relatórios e PEI em minutos. Sem termos difíceis e sem precisar entender de tecnologia.</p>
+   <ul class="checks">
+    <li>Planos de aula completos em poucos minutos</li>
+    <li>Relatórios bimestrais, descritivos e PEI com olhar humano</li>
+    <li>115 prompts prontos para copiar e usar hoje</li>
+   </ul>
+   <a class="btn big" href="#oferta">Quero minha rotina leve</a>
+   <p class="preco-mini">De <s>R$ 47</s> por <b>R$ 37</b> no lançamento · acesso imediato</p>
   </div>
+  <div class="mock" aria-hidden="true">
+   <img class="m2" src="img/bonus1.jpg" alt="">
+   <img class="m3" src="img/bonus2.jpg" alt="">
+   <img class="m1" src="img/ebook.jpg" alt="Capa do e-book Método Rotina Leve">
+  </div>
+ </div>
 </section>
 
-<!-- 2. DORES -->
+<!-- VÍDEO DE VENDAS: quando o vídeo estiver pronto, cole aqui o código do YouTube/Vimeo
+<section class="center" style="padding-top:0">
+ <div class="wrap"><div style="max-width:860px;margin:0 auto;aspect-ratio:16/9;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(30,58,76,.18)">
+  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ID_DO_VIDEO" title="Método Rotina Leve" frameborder="0" allowfullscreen></iframe>
+ </div></div>
+</section>
+-->
+
+<!-- DOR -->
+<section class="dor">
+ <div class="wrap">
+  <div class="center">
+   <span class="tag">Você se reconhece?</span>
+   <h2>A sala de aula é a parte boa. O problema é tudo o que vem depois.</h2>
+  </div>
+  <div class="dores">
+   <div><b>Domingo à noite planejando a semana</b>, enquanto a família descansa.</div>
+   <div><b>Relatórios e PEI acumulados</b> no fim do bimestre, sempre com pressa.</div>
+   <div><b>Material do zero toda vez</b>: atividade, prova, gabarito, rubrica…</div>
+   <div><b>Já ouviu falar de IA</b>, mas não sabe por onde começar, ou testou e achou as respostas genéricas.</div>
+  </div>
+  <p class="virada"><b>A boa notícia:</b> a IA não substitui o professor, mas pode assumir a parte repetitiva. Com o método certo, você guarda a sua energia para o que importa: os alunos.</p>
+ </div>
+</section>
+
+<!-- COMO FUNCIONA -->
 <section>
-  <div class="wrap">
-    <h2>Você se reconhece aqui?</h2>
-    <p class="sub">Professor não falta por falta de vontade. Falta tempo, porque a burocracia engole tudo.</p>
-    <div class="grid">
-      <div class="card"><div class="ico">📚</div><h3>Planejamento sem fim</h3><p>Horas montando planos mensais, sequências e habilidades da BNCC/currículo, tudo do zero.</p></div>
-      <div class="card"><div class="ico">📝</div><h3>Relatórios e pareceres</h3><p>Escrever relatório de cada aluno, um por um, no fim do bimestre, quando o cansaço já está no limite.</p></div>
-      <div class="card"><div class="ico">🧩</div><h3>PEI e adaptações</h3><p>Plano individualizado, atividades adaptadas e registros da educação especial que exigem cuidado e tempo.</p></div>
-      <div class="card"><div class="ico">🌙</div><h3>Trabalho que vai pra casa</h3><p>A sala de aula termina às cinco, mas o trabalho invade a noite, o domingo e a sua vida pessoal.</p></div>
-    </div>
+ <div class="wrap center">
+  <span class="tag">Como funciona</span>
+  <h2>Um caminho simples, em 3 passos</h2>
+  <p class="lead">Feito para quem nunca usou IA. Cada aula é curta, com um PDF prático para consultar sempre que precisar.</p>
+  <div class="passos" style="text-align:left">
+   <div class="passo"><div class="n">1</div><h3>Entenda o básico</h3><p>O que a IA faz (e o que não faz), quais ferramentas gratuitas usar e como configurar tudo em minutos.</p></div>
+   <div class="passo"><div class="n">2</div><h3>Aplique na sua rotina</h3><p>Planos de aula, materiais, provas, relatórios e PEI com modelos prontos para a sua disciplina e o seu nível.</p></div>
+   <div class="passo"><div class="n">3</div><h3>Ganhe a sua hora</h3><p>Com o protocolo "A Hora Semanal", o planejamento da semana passa a caber em uma hora produtiva.</p></div>
   </div>
+ </div>
 </section>
 
-<!-- 3. O QUE VEM NO MÉTODO -->
-<section class="solucao">
-  <div class="wrap">
-    <h2>O que você recebe no Método Rotina Leve</h2>
-    <p class="sub">Um material pensado por um professor, para professores, testado na rotina real de escola pública.</p>
-    <ul class="lista">
-      <li><strong>Banco de prompts prontos</strong> para planejamento, sequência didática, atividades, avaliações e correções. É só copiar, colar e ajustar.</li>
-      <li><strong>Prompts para educação especial e PEI</strong>, com orientações para adaptar atividades e escrever registros com mais segurança.</li>
-      <li><strong>Prompts para relatórios e pareceres</strong> descritivos, com linguagem pedagógica e respeitosa.</li>
-      <li><strong>E-book passo a passo</strong> explicando como usar a IA do jeito certo, do primeiro acesso até o resultado final.</li>
-      <li><strong>Área de membros</strong> organizada, para você encontrar rápido o que precisa no dia a dia.</li>
-    </ul>
+<!-- CONTEÚDO -->
+<section class="mods" id="conteudo">
+ <div class="wrap">
+  <div class="center">
+   <span class="tag">O que você vai aprender</span>
+   <h2>Tudo o que está dentro do Método Rotina Leve</h2>
+   <p class="lead">Clique em cada módulo para ver as aulas.</p>
   </div>
+  <div class="numeros">
+   <div><b>11</b>módulos</div>
+   <div><b>41</b>aulas em PDF</div>
+   <div><b>97</b>páginas no e-book</div>
+   <div><b>115</b>prompts prontos</div>
+  </div>
+  <div class="grid-mod">
+   <div class="mod"><img src="img/mod/00.jpg" alt="Comece por aqui" loading="lazy"><details><summary>Comece por aqui</summary><ul><li>Boas-vindas e como usar o método</li></ul></details></div>
+   <div class="mod"><img src="img/mod/01.jpg" alt="Módulo I" loading="lazy"><details><summary>Módulo I · Começando do zero com IA na educação</summary><ul><li>O que é o Método Rotina Leve</li><li>IA explicada de forma simples</li><li>Palavras-chave que o professor precisa dominar</li><li>O que a IA realmente faz (e o que não faz)</li><li>Como a IA ajuda no dia a dia do professor</li></ul></details></div>
+   <div class="mod"><img src="img/mod/02.jpg" alt="Módulo II" loading="lazy"><details><summary>Módulo II · Ferramentas simples para o dia a dia</summary><ul><li>Ferramentas fáceis para começar hoje</li><li>Como escolher a ferramenta certa</li><li>Configuração rápida e descomplicada</li><li>Ferramentas gratuitas que funcionam muito bem</li><li>Usando mais de uma ferramenta em conjunto</li><li>Checklist de início rápido</li></ul></details></div>
+   <div class="mod"><img src="img/mod/03.jpg" alt="Módulo III" loading="lazy"><details><summary>Módulo III · Planejando aulas de forma inteligente</summary><ul><li>Como transformar objetivos em aulas</li><li>Planos de aula em minutos com IA</li><li>Materiais prontos com IA</li><li>Adaptando aulas por nível</li><li>Atividades visuais e multimídia</li><li>Avaliações curtas integradas ao plano</li></ul></details></div>
+   <div class="mod"><img src="img/mod/04.jpg" alt="Módulo IV" loading="lazy"><details><summary>Módulo IV · Ensino personalizado com IA</summary><ul><li>Identificando o que cada aluno precisa</li><li>Atividades diferenciadas para grupos diferentes</li><li>Reforço e aceleração com precisão</li><li>Projetos interdisciplinares com IA</li></ul></details></div>
+   <div class="mod"><img src="img/mod/05.jpg" alt="Módulo V" loading="lazy"><details><summary>Módulo V · Materiais, provas e relatórios</summary><ul><li>Produção inteligente de materiais</li><li>Provas, gabaritos e rubricas simples</li><li>Relatórios completos com IA (bimestral, anual, PEI)</li><li>Automatizando tarefas e organizando materiais</li></ul></details></div>
+   <div class="mod"><img src="img/mod/06.jpg" alt="Módulo VI" loading="lazy"><details><summary>Módulo VI · Prompts sem mistério</summary><ul><li>O que é um prompt e sua anatomia</li><li>Modelos de prompts para tarefas escolares</li><li>Prompts por disciplina e por nível</li><li>Erros comuns e ajustes de prompts</li></ul></details></div>
+   <div class="mod"><img src="img/mod/07.jpg" alt="Módulo VII" loading="lazy"><details><summary>Módulo VII · Na prática: casos reais</summary><ul><li>Exemplos reais do dia a dia do professor</li><li>Casos reais por disciplina</li><li>Aulas inclusivas e acessibilidade</li><li>De 6 horas para 1 hora de planejamento</li></ul></details></div>
+   <div class="mod"><img src="img/mod/08.jpg" alt="Módulo VIII" loading="lazy"><details><summary>Módulo VIII · Segurança, ética e próximos passos</summary><ul><li>Uso seguro e ético da IA</li><li>Como evitar erros e proteger dados</li><li>Indicadores e comunicação com famílias e direção</li><li>Tendências e próximos passos</li></ul></details></div>
+   <div class="mod"><img src="img/mod/09.jpg" alt="Encerramento" loading="lazy"><details><summary>Encerramento · Sua rotina leve começa agora</summary><ul><li>Encerramento do Método Rotina Leve</li></ul></details></div>
+  </div>
+ </div>
 </section>
 
-<!-- 4. PARA QUEM É -->
+<!-- BÔNUS -->
 <section>
-  <div class="wrap">
-    <h2>Para quem é o método</h2>
-    <div class="duas">
-      <div class="card">
-        <h3>✅ É para você se…</h3>
-        <ul>
-          <li>é professor(a) da educação infantil, anos iniciais, finais ou educação especial;</li>
-          <li>sente que a parte burocrática rouba seu tempo;</li>
-          <li>tem pouca familiaridade com tecnologia e quer algo simples;</li>
-          <li>quer usar IA com responsabilidade, sem perder o seu olhar de professor.</li>
-        </ul>
-      </div>
-      <div class="card nao">
-        <h3>✋ Não é para você se…</h3>
-        <ul>
-          <li>espera que a IA faça tudo sozinha, sem revisão;</li>
-          <li>não tem nenhum interesse em ganhar tempo na rotina;</li>
-          <li>procura um curso técnico de programação.</li>
-        </ul>
-      </div>
-    </div>
+ <div class="wrap">
+  <div class="center">
+   <span class="tag">Bônus exclusivos</span>
+   <h2>Você também leva dois materiais para usar todos os dias</h2>
   </div>
+  <div class="bonus">
+   <div class="bon"><img src="img/bonus1.jpg" alt="Banco de Prompts Rotina Leve" loading="lazy"><div><span class="tag">Bônus 1</span><h3>Banco de Prompts Rotina Leve</h3><p>115 prompts prontos, organizados em 12 categorias: planejamento, avaliação, relatórios, PEI, inclusão, comunicação com famílias e mais. É só copiar, trocar os campos e usar.</p></div></div>
+   <div class="bon"><img src="img/bonus2.jpg" alt="A Hora Semanal" loading="lazy"><div><span class="tag">Bônus 2</span><h3>A Hora Semanal: planner e checklist</h3><p>O protocolo para transformar o planejamento da semana em uma hora produtiva, com checklist de 7 dias, kit mínimo e planner para imprimir.</p></div></div>
+  </div>
+ </div>
 </section>
 
-<!-- 5. PROVA SOCIAL -->
-<section class="prova">
-  <div class="wrap centro">
-    <div class="numero">+100 professores</div>
-    <p class="sub">já usam o material do Método Rotina Leve no dia a dia da escola.</p>
-    <h2 style="margin-top:10px">O que dizem os professores</h2>
-    <div class="depos">
-      <div class="depo"><div class="aspas">“</div><p><strong>Voltei a ter vida fora da escola.</strong> Eu passava horas preparando atividades e planejamentos. Hoje organizo minha rotina em poucos minutos e ainda sobra tempo para mim.</p><div class="quem"><span class="av">M</span><div><b>Mariana Silva</b><small>Professora dos Anos Iniciais</small></div></div></div>
-      <div class="depo"><div class="aspas">“</div><p><strong>O que levava horas, agora resolvo em minutos.</strong> Não imaginava que dava para otimizar tanto. Preparar aula e montar planejamento ficou muito mais simples. Recomendo demais!</p><div class="quem"><span class="av">C</span><div><b>Carlos Rodrigues</b><small>Professor de Educação Física</small></div></div></div>
-      <div class="depo"><div class="aspas">“</div><p><strong>Parei de levar trabalho para casa.</strong> Minha rotina era corrida demais, quase todo dia sobrava tarefa para a noite. Com a Rotina Leve ganhei agilidade, organização e, principalmente, tranquilidade.</p><div class="quem"><span class="av">F</span><div><b>Fernanda Martins</b><small>Professora do Ensino Fundamental</small></div></div></div>
-      <div class="depo"><div class="aspas">“</div><p><strong>Sobrou tempo para o que importa: ensinar.</strong> Pequenas mudanças fizeram uma diferença enorme. Preparo aulas, adapto atividades e organizo meus materiais com muito mais rapidez.</p><div class="quem"><span class="av">R</span><div><b>Rodrigo Almeida</b><small>Professor de Matemática</small></div></div></div>
-      <div class="depo"><div class="aspas">“</div><p><strong>Um jeito mais inteligente de trabalhar.</strong> Eu vivia sobrecarregada tentando dar conta de planejamento, atividades e mil demandas. Hoje tenho mais organização e mais tempo para mim.</p><div class="quem"><span class="av">J</span><div><b>Juliana Pereira</b><small>Professora de Educação Infantil</small></div></div></div>
-    </div>
+<!-- PARA QUEM -->
+<section style="background:#fff">
+ <div class="wrap">
+  <div class="center"><span class="tag">Para quem é</span><h2>O método foi feito para você se…</h2></div>
+  <div class="quem">
+   <div class="sim"><h3>✅ É para você</h3><ul>
+    <li>É professor(a) da Educação Infantil, do Fundamental ou do Médio</li>
+    <li>Atua como segundo professor, na educação especial ou com PEI</li>
+    <li>Nunca usou IA ou usou pouco e não gostou do resultado</li>
+    <li>Quer tempo de volta sem perder a qualidade das aulas</li>
+   </ul></div>
+   <div class="nao"><h3>⛔ Não é para você</h3><ul>
+    <li>Quer que a IA faça tudo sozinha, sem revisão do professor</li>
+    <li>Procura um curso técnico de programação</li>
+    <li>Não tem interesse em mudar a rotina de planejamento</li>
+   </ul></div>
   </div>
+ </div>
 </section>
 
-<!-- 6. QUEM CRIOU -->
+<!-- PROVA -->
+<section class="prova center">
+ <div class="wrap">
+  <span class="tag">Quem já usa</span>
+  <div class="big-num">+100</div>
+  <h2 style="margin-top:0">professores já usam o material do Método Rotina Leve</h2>
+  <p class="lead">Antes de virar curso, o método circulou de professor para professor. Agora ele chega reorganizado, revisado e completo, com aulas curtas, e-book e bônus.</p>
+  <!-- DEPOIMENTOS: quando os prints chegarem, adicionar aqui (imagens em img/depoimentos/) -->
+ </div>
+</section>
+
+<!-- AUTOR -->
 <section class="autor">
-  <div class="wrap">
-    <div class="card">
-      <div class="foto">J</div>
-      <div class="txt">
-        <h3>Quem criou o método</h3>
-        <p>Sou o professor Jandir. Dou aula desde 2017 em redes públicas e particulares, como regente dos anos iniciais e segundo professor na educação especial. Sou formado em Pedagogia e Educação Física, com pós em Educação Especial e Neuropsicopedagogia, e estudo Inteligência Artificial e Ciência de Dados. Criei o Método Rotina Leve porque eu também vivia levando trabalho pra casa.</p>
-      </div>
-    </div>
+ <div class="wrap">
+  <div class="foto">J</div>
+  <div>
+   <span class="tag">Quem criou</span>
+   <h2>Prof. Jandir Reis</h2>
+   <p class="lead">Professor desde 2017, com passagem pelas redes municipal e estadual, nos anos iniciais, na educação física e na educação especial. Formado em Educação Física e Pedagogia, com pós-graduações em Educação Especial e Neuropsicopedagogia. Criou o Método Rotina Leve para resolver um problema que vivia na própria pele: o tempo que o planejamento, os relatórios e o PEI tiravam da vida fora da escola.</p>
   </div>
+ </div>
 </section>
 
-<!-- 7. OFERTA -->
+<!-- OFERTA -->
 <section class="oferta" id="oferta">
-  <div class="wrap">
-    <h2>Comece hoje a ter uma rotina mais leve</h2>
-    <div class="caixa">
-      <div class="de">de R$ 79,90</div>
-      <div class="por">R$ 47</div>
-      <div>pagamento único · acesso imediato</div>
-      <ul class="lista">
-        <li>Banco de prompts prontos</li>
-        <li>Prompts para educação especial e PEI</li>
-        <li>Prompts para relatórios e pareceres</li>
-        <li>E-book passo a passo</li>
-        <li>Área de membros</li>
-      </ul>
-      <a class="btn cta" href="#" data-checkout>Quero o Método Rotina Leve</a>
-      <div class="seguro">🔒 Pagamento seguro pela Kiwify · Pix, cartão ou boleto</div>
-    </div>
+ <div class="wrap center">
+  <span class="tag">Oferta de lançamento</span>
+  <h2>Comece hoje e sinta a diferença ainda nesta semana</h2>
+  <div class="box">
+   <ul>
+    <li><span>Curso completo: 11 módulos e 41 aulas em PDF</span><span>✔</span></li>
+    <li><span>E-book completo do método (97 páginas)</span><span>✔</span></li>
+    <li><span>Bônus 1: Banco de Prompts (115 prompts)</span><span>✔</span></li>
+    <li><span>Bônus 2: A Hora Semanal (planner e checklist)</span><span>✔</span></li>
+    <li><span>Acesso imediato na área de membros</span><span>✔</span></li>
+   </ul>
+   <p class="de">Preço normal: <s>R$ 47,00</s></p>
+   <p class="por">R$ 37</p>
+   <p class="small">no Pix ou no cartão</p>
+   <div class="cupom">Use o cupom <b>LANCAMENTO</b> no pagamento · válido para as 50 primeiras professoras</div><br>
+   <a class="btn big" href="https://pay.kiwify.com.br/UyzHeFs?coupon=LANCAMENTO" data-checkout>Quero o Método Rotina Leve</a>
+   <div class="seguro"><span>🔒 Pagamento seguro pela Kiwify</span><span>⚡ Acesso por e-mail na hora</span></div>
   </div>
+  <div class="garantia">
+   <div class="selo">7<small>DIAS</small></div>
+   <p><b>Garantia incondicional de 7 dias.</b> Entre, leia, teste os prompts. Se não for para você, é só pedir o reembolso dentro de 7 dias pela própria Kiwify e você recebe 100% do valor de volta, sem perguntas.</p>
+  </div>
+ </div>
 </section>
 
-<!-- 8. GARANTIA -->
-<section class="garantia">
-  <div class="wrap">
-    <div class="card">
-      <div class="selo7"><b>7</b>dias de<br>garantia</div>
-      <div style="flex:1;min-width:240px">
-        <h3>Risco zero para você</h3>
-        <p style="color:var(--texto-suave)">Acesse, teste os prompts na sua rotina e, se achar que não é para você, peça o reembolso em até 7 dias. Você recebe 100% do valor de volta, sem perguntas.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 9. FAQ -->
+<!-- FAQ -->
 <section>
-  <div class="wrap">
-    <h2>Perguntas frequentes</h2>
-    <details><summary>Preciso entender de tecnologia?</summary><p>Não. O método foi feito justamente para quem tem pouca familiaridade. O e-book mostra tudo passo a passo.</p></details>
-    <details><summary>Preciso pagar alguma ferramenta de IA?</summary><p>Não. Os prompts funcionam nas versões gratuitas das ferramentas de IA mais conhecidas.</p></details>
-    <details><summary>Como recebo o material?</summary><p>Logo depois da confirmação do pagamento, você recebe por e-mail o acesso à área de membros da Kiwify.</p></details>
-    <details><summary>Serve para educação especial?</summary><p>Sim. Há prompts específicos para PEI, adaptação de atividades e registros da educação especial.</p></details>
-    <details><summary>A IA vai fazer o trabalho por mim?</summary><p>Ela faz o trabalho pesado do rascunho. A revisão e o olhar pedagógico continuam sendo seus, e é isso que garante um resultado de qualidade.</p></details>
-    <div class="centro" style="margin-top:34px"><a class="btn cta" href="#" data-checkout>Quero uma rotina mais leve</a></div>
+ <div class="wrap">
+  <div class="center"><span class="tag">Dúvidas frequentes</span><h2>Perguntas e respostas</h2></div>
+  <div class="faq">
+   <details><summary>Preciso entender de tecnologia?</summary><p>Não. O método começa do zero, com linguagem simples e passo a passo. Se você usa WhatsApp e e-mail, consegue acompanhar.</p></details>
+   <details><summary>Preciso pagar por alguma ferramenta de IA?</summary><p>Não. O método usa ferramentas com versão gratuita, e o Módulo II mostra quais funcionam muito bem sem custo.</p></details>
+   <details><summary>Como recebo o acesso?</summary><p>Logo após a confirmação do pagamento, você recebe um e-mail da Kiwify com o acesso à área de membros, onde estão as aulas, os PDFs e os bônus. No Pix e no cartão, o acesso é imediato.</p></details>
+   <details><summary>Por quanto tempo terei acesso?</summary><p>O acesso é vitalício enquanto o curso estiver no ar, e todos os PDFs podem ser baixados e guardados.</p></details>
+   <details><summary>Serve para a minha etapa e a minha disciplina?</summary><p>Sim. Há exemplos e prompts para Educação Infantil, Fundamental e Médio, por disciplina, além de aulas específicas para inclusão, acessibilidade e PEI.</p></details>
+   <details><summary>E os dados dos meus alunos?</summary><p>O Módulo VIII e o Banco de Prompts ensinam a usar a IA sem expor dados pessoais, usando iniciais e descrições, de acordo com a LGPD.</p></details>
+   <details><summary>Como funciona o cupom de lançamento?</summary><p>Na página de pagamento, digite <b>LANCAMENTO</b> no campo de cupom. O valor cai de R$ 47 para R$ 37. O cupom vale para as 50 primeiras compras.</p></details>
+   <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso pela Kiwify e recebe o valor integral de volta.</p></details>
   </div>
+  <p class="center" style="margin-top:34px"><a class="btn big" href="#oferta">Garantir meu acesso</a></p>
+ </div>
 </section>
+
+</main>
 
 <footer>
-  <div class="wrap">
-    <div class="marca">Método Rotina Leve</div>
-    <p>paraprofessor.com.br · © 2026 · Todos os direitos reservados</p>
-  </div>
+ <div class="wrap">
+  <p><b style="color:#fff">Método Rotina Leve</b> · paraprofessor.com.br</p>
+  <p style="margin-top:8px">Pagamentos processados com segurança pela Kiwify. Este produto não garante resultados específicos; os resultados dependem da aplicação de cada professor.</p>
+  <p style="margin-top:8px">© 2026 Método Rotina Leve. Todos os direitos reservados.</p>
+ </div>
 </footer>
 
-<div class="barra"><a class="btn cta" href="#" data-checkout>Quero o método · R$ 47</a></div>
+<div class="fixo"><a class="btn" href="#oferta">Quero minha rotina leve · R$ 37</a></div>
 
-<script>
-  // >>> Cole aqui o link do checkout da Kiwify <<<
-  var CHECKOUT = "https://pay.kiwify.com.br/UyzHeFs";
-  document.querySelectorAll("[data-checkout]").forEach(function(a){ a.href = CHECKOUT; });
-</script>
 </body>
 </html>
