@@ -182,6 +182,24 @@ footer{background:var(--marinho2);color:#9FB6BE;padding:40px 0 44px;font-size:14
 footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 footer b{color:#fff}
 .fixo{display:none}
+
+/* modo VSL */
+.vsl-bloco{padding:56px 0 72px;text-align:center}
+.vsl-bloco h1{font-size:clamp(34px,5vw,56px);font-weight:800;max-width:20ch;margin:0 auto}
+.vsl-bloco .sub{margin:16px auto 30px}
+.video{max-width:880px;margin:0 auto;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:var(--marinho);box-shadow:0 30px 70px -24px rgba(30,58,76,.45)}
+.video iframe,.video #player{width:100%;height:100%;display:block;border:0}
+.aguarde{margin-top:22px;font-size:15px;color:var(--texto)}
+.liberado{margin-top:30px}
+.liberado .ancora{color:var(--texto);font-size:16px}
+.liberado .agora{font-family:Poppins;font-size:24px;font-weight:600;margin:6px 0 22px}
+.liberado .agora b{font-size:34px;color:var(--verde)}
+.liberado code,.faixa code{font-family:Poppins;font-weight:600}
+.liberado code{background:var(--coralc);color:#7A3A1A;padding:2px 10px;border-radius:8px;font-size:18px}
+.recibo .ja{font-size:14px;color:var(--texto)}
+body.vsl .faixa,body.vsl .hero,body.vsl main>section:not(.vsl-bloco),body.vsl footer,body.vsl .fixo,body.vsl header nav{display:none!important}
+body.vsl .vsl-bloco{display:block}
+body.com-video .hero{display:none!important}
 @media (max-width:920px){
  section{padding:72px 0}
  header nav a:not(.btn){display:none}
@@ -237,6 +255,21 @@ footer b{color:#fff}
 </header>
 
 <main>
+
+<section class="vsl-bloco" id="vsl" hidden>
+ <div class="wrap">
+  <h1>Planeje a semana em 1 hora, e não em <span class="riscado">6 horas</span>.</h1>
+  <p class="sub">Assista até o final: a condição de lançamento é liberada nos últimos minutos do vídeo.</p>
+  <div class="video"><div id="player"></div></div>
+  <p class="aguarde" id="aguarde">O botão de compra aparece aqui embaixo perto do fim do vídeo.</p>
+  <div class="liberado" id="liberado" hidden>
+   <p class="ancora">Já vendido por <s>R$ 79,90</s> · preço normal <s>R$ 47</s></p>
+   <p class="agora">Hoje por <b>R$ 37</b> com o cupom <code>LANCAMENTO</code></p>
+   <a class="btn" href="#oferta">Quero aproveitar o preço de lançamento</a>
+   <p class="nota">Só para as 50 primeiras vendas · 7 dias de garantia</p>
+  </div>
+ </div>
+</section>
 
 <section class="hero">
  <div class="wrap">
@@ -410,6 +443,7 @@ footer b{color:#fff}
  <div class="wrap">
   <div>
    <h2>Comece hoje e sinta a diferença ainda nesta semana</h2>
+   <p class="sub">Este material já foi vendido por R$ 79,90, e quem comprou costuma dizer que valeu bem mais. Eu escolhi baixar o preço porque conversei com muitos colegas e vi o quanto essa rotina ainda pesa. Quero que o método chegue em quem precisa.</p>
    <p class="sub">Pagamento pela Kiwify. Assim que for aprovado, você recebe por e-mail o acesso à área de membros com todas as aulas, o e-book e os bônus.</p>
    <div class="garantia">
     <div class="selo"><span><b>7</b>dias</span></div>
@@ -423,6 +457,7 @@ footer b{color:#fff}
     <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.4l3.6 3.6L16 5.6" fill="none" stroke="#2E7D70" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Bônus 1: Banco de Prompts, com 115 prompts</li>
     <li><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.4l3.6 3.6L16 5.6" fill="none" stroke="#2E7D70" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Bônus 2: A Hora Semanal, planner e checklist</li>
    </ul>
+   <p class="ja">Já foi vendido por <s>R$ 79,90</s></p>
    <div class="valor"><span class="de">de <s>R$ 47</s></span><span class="por"><sup>R$</sup>37</span></div>
    <p class="nota" style="margin-top:0">pagamento único, no Pix ou no cartão</p>
    <div class="cupom"><span>Cupom das 50 primeiras vendas</span><code>LANCAMENTO</code></div>
@@ -467,6 +502,38 @@ footer b{color:#fff}
 
 <div class="fixo" id="fixo"><a class="btn" href="#oferta">Quero minha rotina leve por R$ 37</a></div>
 
+<script>
+/* ===== CONFIGURAÇÃO DO VÍDEO =====
+   VIDEO_ID: o código do vídeo no YouTube (o que vem depois de "v=" no link). Vazio = página normal, sem vídeo.
+   LIBERAR_ANTES_DO_FIM: segundos antes do fim do vídeo em que a oferta aparece.
+   LIBERAR_POR_TEMPO: minutos na página depois dos quais a oferta aparece mesmo sem assistir. */
+var VIDEO_ID = "";
+var LIBERAR_ANTES_DO_FIM = 120;
+var LIBERAR_POR_TEMPO = 8;
+(function(){
+ if(!VIDEO_ID) return;
+ var CHAVE='rl_oferta_liberada', ja=false;
+ try{ja=localStorage.getItem(CHAVE)==='1'}catch(e){}
+ if(/[?&]liberado=1/.test(location.search)) ja=true;
+ var bloco=document.getElementById('vsl'); bloco.hidden=false;
+ document.body.classList.add('vsl','com-video');
+ function liberar(){
+  if(!document.body.classList.contains('vsl')&&ja)return;
+  document.body.classList.remove('vsl');
+  document.getElementById('aguarde').hidden=true;
+  document.getElementById('liberado').hidden=false;
+  try{localStorage.setItem(CHAVE,'1')}catch(e){}
+  ja=true;
+ }
+ if(ja){liberar()}
+ else{setTimeout(liberar,LIBERAR_POR_TEMPO*60000)}
+ var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
+ window.onYouTubeIframeAPIReady=function(){
+  var p=new YT.Player('player',{videoId:VIDEO_ID,playerVars:{rel:0,modestbranding:1,playsinline:1}});
+  setInterval(function(){try{var d=p.getDuration(),t=p.getCurrentTime();if(d>0&&t>=d-LIBERAR_ANTES_DO_FIM)liberar()}catch(e){}},1000);
+ };
+})();
+</script>
 <script>
 (function(){
  var p=document.getElementById('planner'),h=document.getElementById('horas'),r=document.getElementById('rotulo'),b=document.getElementById('troca');
