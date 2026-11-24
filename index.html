@@ -262,6 +262,14 @@ body.com-video .hero{display:none!important}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (max-width:920px){.retrato{margin:0 auto 20px}.retrato .selo-cem{right:10px;bottom:-18px}}
 </style>
+<!-- Meta Pixel -->
+<script>
+var META_PIXEL_ID="1826566041923646";
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init',META_PIXEL_ID);fbq('track','PageView');
+document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href*="pay.kiwify"]');if(a)fbq('track','InitiateCheckout',{value:47,currency:'BRL'});});
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1826566041923646&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
@@ -572,6 +580,7 @@ var LIBERAR_POR_TEMPO = 6;
  document.body.classList.add('vsl','com-video');
  function liberar(){
   if(!document.body.classList.contains('vsl')&&ja)return;
+  if(!ja&&window.fbq){fbq('track','ViewContent',{content_name:'VSL ate a oferta',value:47,currency:'BRL'});}
   document.body.classList.remove('vsl');
   document.getElementById('aguarde').hidden=true;
   document.getElementById('liberado').hidden=false;
