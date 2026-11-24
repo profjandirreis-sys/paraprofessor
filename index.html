@@ -208,7 +208,15 @@ footer b{color:#fff}
 .vsl-bloco .sub{margin:16px auto 30px}
 .video{max-width:880px;margin:0 auto;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:var(--marinho);box-shadow:0 30px 70px -24px rgba(30,58,76,.45)}
 .video iframe,.video #player{width:100%;height:100%;display:block;border:0}
-.aguarde{margin-top:22px;font-size:15px;color:var(--texto)}
+.aguarde{margin:22px auto 0;font-size:16px;color:var(--texto);max-width:56ch}
+.video{position:relative}
+.video .tampa{position:absolute;inset:0;background:transparent;border:0;cursor:pointer;z-index:2}
+.video .capa,.video .pausa{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border:0;cursor:pointer;color:#fff;font:600 clamp(17px,2.4vw,22px) Poppins,sans-serif;background:rgba(22,48,63,.72)}
+.video .pausa{pointer-events:none;background:rgba(22,48,63,.6)}
+.video [hidden]{display:none!important}
+.video .play{width:84px;height:84px;border-radius:50%;background:var(--verde);display:grid;place-items:center;box-shadow:0 0 0 0 rgba(123,196,181,.7);animation:pulsa 1.8s ease-in-out infinite}
+.barra-vsl{position:absolute;left:0;right:0;bottom:0;height:6px;background:rgba(255,255,255,.25);z-index:4}
+.barra-vsl i{display:block;height:100%;width:0;background:var(--agua);transition:width .9s linear}
 .liberado{margin-top:30px}
 .liberado .ancora{color:var(--texto);font-size:16px}
 .liberado .agora{font-family:Poppins;font-size:24px;font-weight:600;margin:6px 0 22px}
@@ -279,9 +287,14 @@ body.com-video .hero{display:none!important}
 <section class="vsl-bloco" id="vsl" hidden>
  <div class="wrap">
   <h1>Planeje a semana em 1 hora, e não em <span class="riscado">6 horas</span>.</h1>
-  <p class="sub">Assista ao vídeo: a condição de lançamento é liberada durante a apresentação.</p>
-  <div class="video"><div id="player"></div></div>
-  <p class="aguarde" id="aguarde">O botão de compra aparece aqui embaixo durante o vídeo.</p>
+  <p class="sub">Existe um jeito de fazer o planejamento, os relatórios e o PEI sem levar trabalho para casa. Neste vídeo eu mostro como.</p>
+  <div class="video" id="video"><div id="player"></div>
+   <button class="capa" id="capa" type="button" aria-label="Assistir ao vídeo com som"><span class="play"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span><b>Clique para assistir com som</b></button>
+   <button class="tampa" id="tampa" type="button" aria-label="Pausar ou continuar o vídeo"></button>
+   <div class="pausa" id="pausa" hidden><span class="play"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span><b>Vídeo pausado. Clique para continuar</b></div>
+   <div class="barra-vsl"><i id="progresso"></i></div>
+  </div>
+  <p class="aguarde" id="aguarde">🔊 Ative o som e assista com atenção. O que eu vou te mostrar não se aprende na faculdade nem na formação continuada.</p>
   <div class="liberado" id="liberado" hidden>
    <p class="ancora">Já vendido por <s>R$ 79,90</s></p>
    <p class="agora">No lançamento, por <b>R$ 47</b></p>
@@ -517,7 +530,7 @@ body.com-video .hero{display:none!important}
    <details><summary>Serve para a minha etapa e a minha disciplina?<span class="mais" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="#2E7D70" stroke-width="2" stroke-linecap="round"/></svg></span></summary><p>Sim. Há exemplos e prompts para Educação Infantil, Fundamental e Médio, por disciplina, e aulas específicas sobre inclusão, acessibilidade e PEI.</p></details>
    <details><summary>E os dados dos meus alunos?<span class="mais" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="#2E7D70" stroke-width="2" stroke-linecap="round"/></svg></span></summary><p>O Módulo VIII e o Banco de Prompts ensinam a usar a IA sem expor dados pessoais, usando iniciais e descrições, de acordo com a LGPD.</p></details>
    <details><summary>Até quando vale o preço de lançamento?<span class="mais" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="#2E7D70" stroke-width="2" stroke-linecap="round"/></svg></span></summary><p>O valor de R$ 47 vale só para os 50 primeiros professores. Quando as vagas acabarem, o método volta ao valor normal.</p></details>
-   <details><summary>E se eu não gostar?<span class="mais" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="#2E7D70" stroke-width="2" stroke-linecap="round"/></svg></span></summary><p>Você tem 7 dias de garantia. Peça o reembolso pela Kiwify e recebe o valor integral de volta.</p></details>
+   <details><summary>E se eu não gostar?<span class="mais" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="#2E7D70" stroke-width="2" stroke-linecap="round"/></svg></span></summary><p>Você tem 7 dias de garantia. Para pedir o reembolso, entre em kiwify.com.br com o e-mail da compra, vá em "Meus pedidos", escolha o Método Rotina Leve e clique em "Solicitar reembolso". Você recebe 100% do valor de volta.</p></details>
   </div>
  </div>
 </section>
@@ -565,13 +578,43 @@ var LIBERAR_POR_TEMPO = 6;
   try{localStorage.setItem(CHAVE,'1')}catch(e){}
   ja=true;
  }
- if(ja){liberar()}
- else{setTimeout(liberar,LIBERAR_POR_TEMPO*60000)}
+ if(ja) liberar();
+ var capa=document.getElementById('capa'),tampa=document.getElementById('tampa'),pausa=document.getElementById('pausa'),barra=document.getElementById('progresso');
+ var p=null,pronto=false,maxT=0,comecou=false;
+ /* se o YouTube não carregar, a oferta aparece depois de alguns minutos para não perder a venda */
+ setTimeout(function(){if(!pronto)setTimeout(liberar,LIBERAR_POR_TEMPO*60000)},20000);
  var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
  window.onYouTubeIframeAPIReady=function(){
-  var p=new YT.Player('player',{videoId:VIDEO_ID,playerVars:{rel:0,modestbranding:1,playsinline:1}});
-  setInterval(function(){try{var d=p.getDuration(),t=p.getCurrentTime();if(t>=LIBERAR_NO_SEGUNDO)liberar()}catch(e){}},1000);
+  p=new YT.Player('player',{videoId:VIDEO_ID,
+   playerVars:{controls:0,disablekb:1,fs:0,rel:0,modestbranding:1,playsinline:1,iv_load_policy:3,cc_load_policy:0,showinfo:0},
+   events:{
+    onReady:function(){pronto=true;try{p.unloadModule('captions');p.unloadModule('cc')}catch(e){}},
+    onStateChange:function(ev){
+     try{p.unloadModule('captions');p.unloadModule('cc')}catch(e){}
+     if(ev.data===YT.PlayerState.PLAYING){pausa.hidden=true}
+     else if(ev.data===YT.PlayerState.PAUSED&&comecou){pausa.hidden=false}
+     else if(ev.data===YT.PlayerState.ENDED){pausa.hidden=true;liberar()}
+    }}});
+  setInterval(function(){
+   if(!p||!pronto)return;
+   try{
+    var t=p.getCurrentTime(),d=p.getDuration()||470;
+    if(t>maxT+2){p.seekTo(maxT,true);t=maxT}   /* não deixa adiantar */
+    if(t<maxT-2){p.seekTo(maxT,true);t=maxT}   /* não deixa voltar */
+    if(t>maxT)maxT=t;
+    var f=Math.min(t/d,1);barra.style.width=(100*(1-Math.pow(1-f,1.8)))+'%';  /* barra anda mais rápido no começo */
+    if(t>=LIBERAR_NO_SEGUNDO)liberar();
+   }catch(e){}
+  },500);
  };
+ capa.addEventListener('click',function(){
+  if(!p||!pronto)return;
+  capa.hidden=true;comecou=true;p.unMute();p.setVolume(100);p.playVideo();
+ });
+ tampa.addEventListener('click',function(){
+  if(!p||!pronto||!comecou)return;
+  if(p.getPlayerState()===YT.PlayerState.PLAYING)p.pauseVideo();else p.playVideo();
+ });
 })();
 </script>
 <script>
