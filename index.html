@@ -150,6 +150,25 @@ details[open] .mais{transform:rotate(45deg)}
 .bio .cargo{color:var(--verde);font-weight:600;margin-bottom:18px}
 .bio p{color:var(--texto)}
 .bio p+p{margin-top:14px}
+.autor .wrap{grid-template-columns:.9fr 1.3fr}
+.retrato{position:relative;max-width:420px}
+.retrato img{display:block;width:100%;border-radius:26px;border:8px solid #fff;outline:3px solid #D6B25E;box-shadow:0 30px 60px -24px rgba(30,58,76,.45)}
+.retrato .selo-cem{position:absolute;right:-18px;bottom:-22px;background:var(--marinho);color:#fff;border-radius:20px;padding:14px 18px;font-family:Poppins;line-height:1.15;box-shadow:0 14px 30px -10px rgba(30,58,76,.5)}
+.retrato .selo-cem b{display:block;font-size:34px;font-weight:800;color:var(--agua)}
+.retrato .selo-cem small{font-size:13px;font-weight:500}
+.formacao{margin-top:22px;display:grid;gap:12px}
+.formacao div{background:#fff;border-radius:16px;padding:14px 18px;border:1px solid var(--linha)}
+.formacao h4{font-family:Poppins;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--verde);margin-bottom:6px}
+.formacao ul{list-style:none;padding:0;margin:0;font-size:15.5px;color:var(--texto)}
+.formacao li{padding-left:18px;position:relative}
+.formacao li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:#D6B25E}
+/* botão com efeito, igual ao do vídeo */
+.btn.pulsa{position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:.03em;animation:pulsa 1.8s ease-in-out infinite;box-shadow:0 0 0 0 rgba(46,125,112,.55)}
+.btn.pulsa:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:brilho 2.6s ease-in-out infinite}
+@keyframes pulsa{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(46,125,112,.5)}50%{transform:scale(1.04);box-shadow:0 0 0 16px rgba(46,125,112,0)}}
+@keyframes brilho{0%{left:-60%}60%,100%{left:130%}}
+.liberado{animation:aparece .7s ease-out}
+@keyframes aparece{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .oferta{background:var(--marinho);color:#fff;position:relative;overflow:hidden}
 .oferta:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:var(--marinho2);left:-200px;bottom:-320px}
 .oferta .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
@@ -232,7 +251,8 @@ body.com-video .hero{display:none!important}
  .fixo .btn{width:100%;box-shadow:0 12px 30px rgba(30,58,76,.35)}
  footer{padding-bottom:96px}
 }
-@media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:920px){.retrato{margin:0 auto 20px}.retrato .selo-cem{right:10px;bottom:-18px}}
 </style>
 </head>
 <body>
@@ -261,11 +281,11 @@ body.com-video .hero{display:none!important}
   <h1>Planeje a semana em 1 hora, e não em <span class="riscado">6 horas</span>.</h1>
   <p class="sub">Assista até o final: a condição de lançamento é liberada nos últimos minutos do vídeo.</p>
   <div class="video"><div id="player"></div></div>
-  <p class="aguarde" id="aguarde">O botão de compra aparece aqui embaixo perto do fim do vídeo.</p>
+  <p class="aguarde" id="aguarde">O botão de compra aparece aqui embaixo durante o vídeo.</p>
   <div class="liberado" id="liberado" hidden>
    <p class="ancora">Já vendido por <s>R$ 79,90</s> · preço normal <s>R$ 47</s></p>
    <p class="agora">Hoje por <b>R$ 37</b> com o cupom <code>LANCAMENTO</code></p>
-   <a class="btn" href="#oferta">Quero aproveitar o preço de lançamento</a>
+   <a class="btn pulsa" href="#oferta">Quero minha rotina leve</a>
    <p class="nota">Só para as 50 primeiras vendas · 7 dias de garantia</p>
   </div>
  </div>
@@ -426,14 +446,35 @@ body.com-video .hero{display:none!important}
  </div>
 </section>
 
-<section class="autor">
+<section class="autor" id="quem-criou">
  <div class="wrap">
-  <div class="cem">+100<small>professores já usam o material do método</small></div>
+  <div class="retrato">
+   <img src="img/jandir.jpg" alt="Foto do professor Jandir Reis" loading="lazy">
+   <div class="selo-cem"><b>+100</b><small>professores já usam<br>o material do método</small></div>
+  </div>
   <div class="bio">
+   <p class="kicker">Quem criou o método</p>
    <h3>Prof. Jandir Reis</h3>
-   <p class="cargo">Criador do Método Rotina Leve</p>
-   <p>Professor desde 2017, com passagem pelas redes municipal e estadual, nos anos iniciais, na educação física e na educação especial. Formado em Educação Física e Pedagogia, com pós-graduações em Educação Especial e Neuropsicopedagogia.</p>
+   <p class="cargo">Professor da rede pública desde 2017 · Criador do Método Rotina Leve</p>
+   <p>Atua nos anos iniciais e na educação especial, como professor regente e segundo professor, com passagem pelas redes municipais de Campo Grande (MS) e São José (SC) e pela rede estadual de Santa Catarina. Também foi educador social com crianças e adolescentes em acolhimento.</p>
    <p>O método nasceu de um problema que ele vivia: o tempo que planejamento, relatórios e PEI tiravam da vida fora da escola. Antes de virar curso, o material circulou de professor para professor. Agora chega revisado, organizado e completo.</p>
+   <div class="formacao">
+    <div><h4>Formação</h4><ul>
+     <li>Licenciatura em Pedagogia</li>
+     <li>Licenciatura em Educação Física</li>
+    </ul></div>
+    <div><h4>Pós-graduações</h4><ul>
+     <li>Neuropsicopedagogia Clínica e Institucional</li>
+     <li>Educação Especial e Atendimento Educacional Especializado (AEE)</li>
+     <li>Docência em Educação Física</li>
+    </ul></div>
+    <div><h4>Inteligência artificial e dados · SENAI/SC (SCTEC)</h4><ul>
+     <li>IA na Prática: Fundamentos da Inteligência Artificial</li>
+     <li>IA na Prática: Ferramentas de IA e sua Utilização Prática</li>
+     <li>IA na Prática: Aplicabilidades Éticas e Responsáveis (LGPD)</li>
+     <li>Introdução ao Data Science e formação em Visualização de Dados e BI</li>
+    </ul></div>
+   </div>
    <!-- DEPOIMENTOS: quando os prints chegarem, entram aqui -->
   </div>
  </div>
@@ -461,7 +502,7 @@ body.com-video .hero{display:none!important}
    <div class="valor"><span class="de">de <s>R$ 47</s></span><span class="por"><sup>R$</sup>37</span></div>
    <p class="nota" style="margin-top:0">pagamento único, no Pix ou no cartão</p>
    <div class="cupom"><span>Cupom das 50 primeiras vendas</span><code>LANCAMENTO</code></div>
-   <a class="btn" href="https://pay.kiwify.com.br/UyzHeFs?coupon=LANCAMENTO">Quero o Método Rotina Leve</a>
+   <a class="btn pulsa" href="https://pay.kiwify.com.br/UyzHeFs?coupon=LANCAMENTO">Quero minha rotina leve</a>
    <div class="seguro"><span>Pagamento seguro pela Kiwify</span><span>Acesso enviado por e-mail</span></div>
   </div>
  </div>
@@ -505,11 +546,11 @@ body.com-video .hero{display:none!important}
 <script>
 /* ===== CONFIGURAÇÃO DO VÍDEO =====
    VIDEO_ID: o código do vídeo no YouTube (o que vem depois de "v=" no link). Vazio = página normal, sem vídeo.
-   LIBERAR_ANTES_DO_FIM: segundos antes do fim do vídeo em que a oferta aparece.
+   LIBERAR_NO_SEGUNDO: segundo do vídeo em que o botão aparece (5:21 = 321, logo após "É isso que o Método Rotina Leve devolve pra você").
    LIBERAR_POR_TEMPO: minutos na página depois dos quais a oferta aparece mesmo sem assistir. */
 var VIDEO_ID = "";
-var LIBERAR_ANTES_DO_FIM = 120;
-var LIBERAR_POR_TEMPO = 8;
+var LIBERAR_NO_SEGUNDO = 321;
+var LIBERAR_POR_TEMPO = 6;
 (function(){
  if(!VIDEO_ID) return;
  var CHAVE='rl_oferta_liberada', ja=false;
@@ -530,7 +571,7 @@ var LIBERAR_POR_TEMPO = 8;
  var tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
  window.onYouTubeIframeAPIReady=function(){
   var p=new YT.Player('player',{videoId:VIDEO_ID,playerVars:{rel:0,modestbranding:1,playsinline:1}});
-  setInterval(function(){try{var d=p.getDuration(),t=p.getCurrentTime();if(d>0&&t>=d-LIBERAR_ANTES_DO_FIM)liberar()}catch(e){}},1000);
+  setInterval(function(){try{var d=p.getDuration(),t=p.getCurrentTime();if(t>=LIBERAR_NO_SEGUNDO)liberar()}catch(e){}},1000);
  };
 })();
 </script>
